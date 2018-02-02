@@ -4,5 +4,6 @@ public class Armor{
     
     public int deflect(int attack){
         return attack/3;
+        //test
     }
 }

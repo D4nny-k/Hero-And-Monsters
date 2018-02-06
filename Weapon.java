@@ -1,17 +1,20 @@
-public class Weapon {
-	
-    private int bottomValue;
-    private int topValue;
-    
-    public Weapon(int bottomValue, int topValue) {
-        this.bottomValue = bottomValue;
-        this.topValue = topValue;
+public class Weapon implements Entity {
+    private int xpos;
+    private int ypos;
+    public Weapon(){
         
     }
     
-    public int returnAttack() {
-    	
-        return (int)(Math.random()*bottomValue + (topValue - bottomValue));
-        
+    public int getX(){
+        return xpos;
+    }
+    
+    public int getY(){
+        return ypos;
+    }
+    
+    public void delete(){
+        xpos = -1;
+        ypos = -1;
     }
 }

@@ -1,109 +1,30 @@
-public class Hero {
-	
+public class Hero extends People{
     private int xpos;
     private int ypos;
     private int health;
     private Weapon weapon;
+    private Storage storage;
+    private Armor armor;
     
-    public Hero(Weapon weapon) {
-    	
+    public Hero(Weapon weapon, Storage storage, Armor armor){
+        super(0, 14);
         xpos = 0;
-        ypos = 9;
+        ypos = 14;
         health = 100;
         this.weapon = weapon;
-        
+        this.storage = storage;
     }
     
-    public boolean run(int speed) {
-    	
-        if (speed == 0){
-            if (Math.random() > .25){
-                return true;
-                
-            }
-            
-        }
-        else if (speed == 1) {
-        	
-            if (Math.random() > .50) {
-            	
-                return true;
-            
-            }
-        }
-        else if (speed == 2) {
-        	
-            if (Math.random() > .75) {
-            	
-                return true;
-            }
-        }
-        else if (speed == 3) {
-        	
-            return false;
-        }
-        
-        return false;
-        
-    }
-    
-    public int getX() {
-    	
+    public int getX(){
         return xpos;
-        
     }
     
-    public int getY() {
-    	
+    public int getY(){
         return ypos;
-        
     }
     
-    public void setX(int value) {
-    	
-        xpos += value;
-        
-    }
-    
-    public void setY(int value) {
-    	
-        ypos += value;
-    
-    }
-    
-    public int getHealth() {
-    	
-        return health;
-        
-    }
-    
-    public void updateHealth(int value) {
-    	
-        health += value;
-        
-    }
-    
-    public void setHealth(int value) {
-    	
-        health = value;
-        
-    }
-    
-    public Weapon getWeapon() {
-    	
-        return weapon;
-        
-    }
-    
-    public void updateWeapon(Weapon weapon) {
-    	
-        this.weapon = weapon;
-        
-    }
-    
-    public String toString() {
-    	
-        return "h";
-        
+    public void delete(){
+        xpos = -1;
+        ypos = -1;
     }
 }

@@ -19,8 +19,16 @@ public class Hero extends People{
         return xpos;
     }
     
+    public void setX(int value){
+        xpos += value;
+    }
+    
     public int getY(){
         return ypos;
+    }
+    
+    public void setY(int value){
+        ypos += value;
     }
     
     public void delete(){

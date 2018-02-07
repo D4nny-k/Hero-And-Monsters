@@ -1,12 +1,12 @@
-public class Monster implements Enemy{
+public class Boss implements Enemy{
     private int attack;
     private int health;
     private int speed;
     
-    public Monster(){
-        attack = (int)(Math.random() * 15 + 15);
-        health = (int)(Math.random() * 50 + 50);
-        speed = (int)(Math.random()* 3);
+    public Boss(int attack, int health, int speed){
+        this.attack = attack;
+        this.health = health;
+        this.speed = speed;
     }
     
     public int getAttack(){

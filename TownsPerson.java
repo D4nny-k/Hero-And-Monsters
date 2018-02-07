@@ -1,8 +1,8 @@
-public class Townspeople{
+public class TownsPerson{
     private int xpos;
     private int ypos;
     
-    public Townspeople(){
+    public TownsPerson(){
         xpos = (int)(Math.random() * 15);
         ypos = (int)(Math.random() * 15);
     }

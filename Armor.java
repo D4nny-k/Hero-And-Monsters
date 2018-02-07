@@ -7,5 +7,6 @@ public class Armor{
     
     public int deflect(int attack){
         return attack*strength/100;
+        // test test bobross134
     }
 }

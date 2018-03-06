@@ -25,6 +25,8 @@ public class Driver{
         boolean boss1 = false;
         boolean boss2 = false;
         String pot = "";
+        int randDir = 0;
+        String monsDir = "";
         
         ArrayList<Entity> entityList = new ArrayList<Entity>();
         ArrayList<TownsPerson> townList = new ArrayList<TownsPerson>();
@@ -33,8 +35,8 @@ public class Driver{
         Weapon shortSword = new Weapon(30, "Short Sword");
         Weapon longSword = new Weapon(50, "Long Sword");
         Weapon battleAxe = new Weapon(100, "Battle Axe");
-        Storage trousers = new Storage(2, potList);
-        Storage satchel = new Storage(6, potList);
+        Storage trousers = new Storage(3, potList);
+        Storage satchel = new Storage(9, potList);
         Potion p1 = new Potion("half");
         Potion p2 = new Potion("full");
         Armor leatherArmor = new Armor(10);
@@ -155,8 +157,21 @@ public class Driver{
                 System.out.println("Hero has encountered a Monster!");
                 pot = "";
                 heroAction = true;
-                monster = new Monster();
-                System.out.println("Monster HP: " + monster.getHealth() + "\nMonster Attack: " + monster.getAttack() + "\nMonster Speed: " + monster.getSpeed());
+                randDir = (int)(Math.random()*4);
+                if (randDir == 0){
+                    monsDir = "north";
+                }
+                else if (randDir == 1){
+                    monsDir = "south";
+                }
+                else if (randDir == 2){
+                    monsDir = "east";
+                }
+                else if (randDir == 3){
+                    monsDir = "west";
+                }
+                monster = new Monster(monsDir);
+                System.out.println("Monster HP: " + monster.getHealth() + "\nMonster Attack: " + monster.getAttack() + "\nMonster Speed: " + monster.getSpeed() + "\nMonster Direction: " + monster.getDirection());
                 while (heroAction){
                     System.out.print("\nEnter an action(attack, run, potion): ");
                     action = userInput.nextLine().toLowerCase();
@@ -169,6 +184,7 @@ public class Driver{
                         System.out.println("Hero attacks the monster!");
                         if (sandals){
                             monster.updateHealth(2*hero.getAttack());
+                            System.out.println("Hero attacks twice!");
                         }
                         else{
                             monster.updateHealth(hero.getAttack());
@@ -196,7 +212,7 @@ public class Driver{
                                 phoenix = false;
                             }
                             else{
-                                System.out.print("Hero dies lol");
+                                System.out.print("Hero is slain...");
                                 run = false;
                                 break;
                             }
@@ -221,7 +237,7 @@ public class Driver{
                                     phoenix = false;
                                 }
                                 else{
-                                    System.out.print("Hero dies lol");
+                                    System.out.print("Hero is slain...");
                                     run = false;
                                     break;
                                 }
@@ -244,6 +260,7 @@ public class Driver{
                             }
                         }
                         hero.updateHealth(hero.calcDam(monster.getAttack()));
+                        System.out.println("The monster attacks!");
                         if (hero.getHealth() == 0){
                             if (phoenix){
                                 hero.setHealth(100);
@@ -251,7 +268,7 @@ public class Driver{
                                 phoenix = false;
                             }
                             else{
-                                System.out.print("Hero dies lol");
+                                System.out.print("Hero is slain...");
                                 run = false;
                                 break;
                             }
@@ -285,7 +302,6 @@ public class Driver{
                         else{
                             coins -= 250;
                             hero.setWeapon(longSword);
-                            longSwordStat = true;
                             System.out.println("Purchase Successful.");
                         }
                     }
@@ -410,7 +426,6 @@ public class Driver{
                 boolean bossFight = true;
                 while (bossFight){
                     heroAction = true;
-                    monster = new Monster();
                     System.out.println("Boss HP: " + b1.getHealth() + "\nBoss Attack: " + b1.getAttack());
                     while (heroAction){
                         pot = "";
@@ -425,6 +440,7 @@ public class Driver{
                             System.out.println("Hero attacks the Boss!");
                             if (sandals){
                                 b1.updateHealth(2*hero.getAttack());
+                                System.out.println("Hero attacks twice!");
                             }
                             else{
                                 b1.updateHealth(hero.getAttack());
@@ -457,7 +473,7 @@ public class Driver{
                                     phoenix = false;
                                 }
                                 else{
-                                    System.out.print("Hero dies lol");
+                                    System.out.print("Hero is slain...");
                                     run = false;
                                     break;
                                 }
@@ -479,6 +495,7 @@ public class Driver{
                                 }
                             }
                             hero.updateHealth(hero.calcDam(b1.getAttack()));
+                            System.out.println("The Boss attacks!");
                             if (hero.getHealth() == 0){
                                 if (phoenix){
                                     hero.setHealth(100);
@@ -486,7 +503,7 @@ public class Driver{
                                     phoenix = false;
                                 }
                                 else{
-                                    System.out.print("Hero dies lol");
+                                    System.out.print("Hero is slain...");
                                     run = false;
                                     break;
                                 }
@@ -500,7 +517,6 @@ public class Driver{
                 boolean bossFight = true;
                 while (bossFight){
                     heroAction = true;
-                    monster = new Monster();
                     System.out.println("Boss HP: " + b2.getHealth() + "\nBoss Attack: " + b2.getAttack());
                     while (heroAction){
                         pot = "";
@@ -515,6 +531,7 @@ public class Driver{
                             System.out.println("Hero attacks the Boss!");
                             if (sandals){
                                 b2.updateHealth(2*hero.getAttack());
+                                System.out.println("Hero attacks twice!");
                             }
                             else{
                                 b2.updateHealth(hero.getAttack());
@@ -547,7 +564,7 @@ public class Driver{
                                     phoenix = false;
                                 }
                                 else{
-                                    System.out.print("Hero dies lol");
+                                    System.out.print("Hero is slain...");
                                     run = false;
                                     break;
                                 }
@@ -569,6 +586,7 @@ public class Driver{
                                 }
                             }
                             hero.updateHealth(hero.calcDam(b2.getAttack()));
+                            System.out.println("The Boss attacks!");
                             if (hero.getHealth() == 0){
                                 if (phoenix){
                                     hero.setHealth(100);
@@ -576,7 +594,7 @@ public class Driver{
                                     phoenix = false;
                                 }
                                 else{
-                                    System.out.print("Hero dies lol");
+                                    System.out.print("Hero is slain...");
                                     run = false;
                                     break;
                                 }
@@ -590,7 +608,6 @@ public class Driver{
                 boolean bossFight = true;
                 while (bossFight){
                     heroAction = true;
-                    monster = new Monster();
                     System.out.println("Boss HP: " + b3.getHealth() + "\nBoss Attack: " + b3.getAttack());
                     while (heroAction){
                         pot = "";
@@ -605,6 +622,7 @@ public class Driver{
                             System.out.println("Hero attacks the Boss!");
                             if (sandals){
                                 b3.updateHealth(2*hero.getAttack());
+                                System.out.println("Hero attacks twice!");
                             }
                             else{
                                 b3.updateHealth(hero.getAttack());
@@ -631,7 +649,7 @@ public class Driver{
                                     phoenix = false;
                                 }
                                 else{
-                                    System.out.print("Hero dies lol");
+                                    System.out.print("Hero is slain...");
                                     run = false;
                                     break;
                                 }
@@ -653,6 +671,7 @@ public class Driver{
                                 }
                             }
                             hero.updateHealth(hero.calcDam(b3.getAttack()));
+                            System.out.println("The Boss attacks!");
                             if (hero.getHealth() == 0){
                                 if (phoenix){
                                     hero.setHealth(100);
@@ -660,7 +679,7 @@ public class Driver{
                                     phoenix = false;
                                 }
                                 else{
-                                    System.out.print("Hero dies lol");
+                                    System.out.print("Hero is slain...");
                                     run = false;
                                     break;
                                 }
